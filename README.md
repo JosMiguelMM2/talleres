@@ -1,6 +1,6 @@
 # Sistema de Control de Gastos Telefónicos
 
-## Descripción del Proyecto_
+## Descripción del Proyecto
 
 Este proyecto busca desarrollar una aplicación para controlar los gastos telefónicos de una empresa. La aplicación permitirá registrar llamadas, mostrar información detallada de cada cabina telefónica y un consolidado total de la información de todas las cabinas.
 
