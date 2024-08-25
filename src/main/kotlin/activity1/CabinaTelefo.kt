@@ -13,16 +13,20 @@ enum class TipoLlamada(val costoMinuto: Int) {
 }
 
 /**
- * Clae llamada
+ * Clase llamada que se le definen unas cracteristicas
+ * se le definen unos comportamientos
  */
 class Llamada(private val tipo: TipoLlamada, val duracion: Double) {
     fun costo(): Double {
         return tipo.costoMinuto * duracion
     }
-
-
 }
 
+/**
+ * Clase Cabina de Telefono
+ * Tiene como atributos un array de clases llamadas
+ * Se definen comportamientos
+ */
 class CabinaTelefo(val id: Int) {
     private val llamadas = mutableListOf<Llamada>()
 
@@ -42,19 +46,6 @@ class CabinaTelefo(val id: Int) {
     fun getTotalCost() = llamadas.sumOf { it.costo() }
     fun getTotalDuration() = llamadas.sumOf { it.duracion }
     fun getTotalCalls() = llamadas.size
-}
-
-fun clearConsole() {
-    try {
-        val os = System.getProperty("os.name").toLowerCase()
-        if (os.contains("win")) {
-            ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor()
-        } else {
-            ProcessBuilder("clear").inheritIO().start().waitFor()
-        }
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
 }
 
 fun Prueba() {
@@ -110,10 +101,7 @@ fun Prueba() {
         val respuesta = leer.nextLine()
         if (respuesta != "SI") {
             break
-        }else{
-            clearConsole()
         }
-
     }
 }
 
