@@ -60,13 +60,19 @@ fun Prueba() {
             val cabina = CabinaTelefo(i)
             for (i in 0 until cantidadLl) {
                 val randomDuracion: Double = Random.nextDouble(1.0, 59.0)
+
+                //val ramdomTipo = TipoLlamada.entries.toTypedArray().random()
+
+                val validTipos = TipoLlamada.values().map { it.name }.toSet()
+
                 var tipoLlamada: TipoLlamada? = null
+
                 while (tipoLlamada == null) {
                     println("Ingrese el tipo de llamada (LOCAL, LARGADISTANCIA, CELULAR):")
                     val tipoInput = leer.nextLine().uppercase()
-                    try {
+                    if (tipoInput in validTipos) {
                         tipoLlamada = TipoLlamada.valueOf(tipoInput)
-                    } catch (e: IllegalArgumentException) {
+                    } else {
                         println("Tipo de llamada no válido. Por favor, intente de nuevo.")
                     }
                 }
