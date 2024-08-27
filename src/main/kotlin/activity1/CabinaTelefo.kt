@@ -1,4 +1,4 @@
-package org.lpii.activity1
+package org.example.activity1
 
 import java.util.Scanner
 import kotlin.random.Random
@@ -60,29 +60,25 @@ fun Prueba() {
             val cabina = CabinaTelefo(i)
             for (i in 0 until cantidadLl) {
                 val randomDuracion: Double = Random.nextDouble(1.0, 59.0)
-                val ramdomTipo = TipoLlamada.entries.toTypedArray().random()
-                cabina.registrarLlamada(ramdomTipo, randomDuracion)
+                var tipoLlamada: TipoLlamada? = null
+                while (tipoLlamada == null) {
+                    println("Ingrese el tipo de llamada (LOCAL, LARGADISTANCIA, CELULAR):")
+                    val tipoInput = leer.nextLine().uppercase()
+                    try {
+                        tipoLlamada = TipoLlamada.valueOf(tipoInput)
+                    } catch (e: IllegalArgumentException) {
+                        println("Tipo de llamada no válido. Por favor, intente de nuevo.")
+                    }
+                }
+
+
+                cabina.registrarLlamada(tipoLlamada, randomDuracion)
 
             }
-
             println(cabina.detalleInfo())
             cabinas.add(cabina)
 
         }
-
-        /*val cabina1 = CabinaTelefo(1)
-        val cabina2 = CabinaTelefo(2)
-
-        cabina1.registrarLlamada(TipoLlamada.LOCAL, 10.0)
-        cabina1.registrarLlamada(TipoLlamada.LARGADISTANCIA, 5.0)
-        cabina2.registrarLlamada(TipoLlamada.CELULAR, 20.0)
-
-        cabinas.add(cabina1)
-        cabinas.add(cabina2)
-
-        println(cabina1.detalleInfo())
-        println(cabina2.detalleInfo())*/
-
 
         val llamadaToCa = cabinas.sumOf { it.getTotalCalls() }
 

@@ -1,6 +1,6 @@
-package org.lpii
+package org.example
 
-import org.lpii.activity1.Prueba
+import org.example.activity1.Prueba
 
 fun main() {
     Prueba()
