@@ -62,6 +62,10 @@ class Hospital {
         return medicos.filter { it.especialidad == espcialidad }
     }
 
+    fun listarMedicosPorDNI(dniMedico: Long): Medico? {
+        return medicos.find { it.DNI == dniMedico }
+    }
+
     fun listarPacientesPorMedico(dniMedico: Long): List<Paciente> {
         val pacientesAtendidos = mutableListOf<Paciente>()
         for (cita in citasMedicas) {
@@ -70,5 +74,9 @@ class Hospital {
             }
         }
         return pacientesAtendidos
+    }
+
+    fun buscarPacientePorDNI(dniPaciente: Long): Paciente? {
+        return pacientes.find { it.DNI == dniPaciente }
     }
 }

@@ -2,6 +2,7 @@ package org.example
 
 import org.example.Clases.*
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.Scanner
 
 fun main() {
@@ -14,7 +15,8 @@ fun main() {
     println("3- Registrar nuevos pacientes")
     println("4- Listar medico por especialidad")
     println("5- Listar pacientes por medico que los atendio")
-    println("6- Salir del menu")
+    println("6- Registrar cita medica")
+    println("7- Salir del menu")
 
     val opcion: Int = leerConsola.nextInt()
     while (true) {
@@ -202,7 +204,44 @@ fun main() {
                 println("Los pacientes atendidos por el medico con dni $dni son ${hospital.listarPacientesPorMedico(dni)}")
             }
 
-            6 -> break
+            6 -> {
+                println("A continuación registrará la cita médica")
+
+                println("Ingrese el DNI del paciente: ")
+                val dniPaciente: Long = leerConsola.nextLong()
+                val paciente: Paciente? = hospital.buscarPacientePorDNI(dniPaciente)
+
+                println("Ingrese el DNI del médico: ")
+                val dniMedico: Long = leerConsola.nextLong()
+                val medico: Medico? = hospital.listarMedicosPorDNI(dniMedico)
+
+                println("Ingrese el servicio: ")
+                val servicio: String = leerConsola.next()
+
+                println("Ingrese la fecha de la cita (YYYY-MM-DDTHH:MM): ")
+                val fecha: LocalDateTime = LocalDateTime.parse(leerConsola.next())
+
+                println("Ingrese la hora de la cita: ")
+                val hora: String = leerConsola.next()
+                if (paciente != null && medico != null) {
+
+
+                    val citaMedica = CitaMedica(
+                        paciente = paciente,
+                        medico = medico,
+                        servicio = servicio,
+                        fecha = fecha,
+                        hora = hora
+                    )
+                    if (citaMedica != null) {
+                        hospital.registrarCitaMedica(citaMedica)
+                    }
+
+                }
+
+            }
+
+            7 -> break
         }
     }
 }
