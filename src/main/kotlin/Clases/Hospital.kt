@@ -58,12 +58,17 @@ class Hospital {
         return citasMedicas
     }
 
-    fun listarMedicosPorEspecialidad(espcialidad: String): List<Medico> {
-        return medicos.filter { it.especialidad == espcialidad }
+    fun listarMedicosPorEspecialidad(espcialidad: String): List<String> {
+        return medicos.filter { it.especialidad == espcialidad }.map { it.toString() }
     }
 
     fun listarMedicosPorDNI(dniMedico: Long): Medico? {
         return medicos.find { it.DNI == dniMedico }
+    }
+
+    fun listarMedicosPorDNI2(dniMedico: Long): String {
+        val medico = medicos.find { it.DNI == dniMedico }
+        return medico?.toString() ?: "Medico no encontrado"
     }
 
     fun listarPacientesPorMedico(dniMedico: Long): List<Paciente> {
@@ -78,5 +83,9 @@ class Hospital {
 
     fun buscarPacientePorDNI(dniPaciente: Long): Paciente? {
         return pacientes.find { it.DNI == dniPaciente }
+    }
+
+    override fun toString(): String {
+        return "Hospital(empleados=$empleados, pacientes=$pacientes, medicos=$medicos, citasMedicas=$citasMedicas)"
     }
 }

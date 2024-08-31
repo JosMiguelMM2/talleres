@@ -1,25 +1,28 @@
 package org.example
 
 import org.example.Clases.*
+import java.lang.Error
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.Locale
 import java.util.Scanner
 
 fun main() {
     val leerConsola = Scanner(System.`in`)
     val hospital = Hospital()
 
-    println("Bienvenido al Hospital")
-    println("1- Registrar Empleados")
-    println("2- Registrar Medicos")
-    println("3- Registrar nuevos pacientes")
-    println("4- Listar medico por especialidad")
-    println("5- Listar pacientes por medico que los atendio")
-    println("6- Registrar cita medica")
-    println("7- Salir del menu")
 
-    val opcion: Int = leerConsola.nextInt()
     while (true) {
+
+        println("Bienvenido al Hospital")
+        println("1- Registrar Empleados")
+        println("2- Registrar Medicos")
+        println("3- Registrar nuevos pacientes")
+        println("4- Listar medico por especialidad")
+        println("5- Listar pacientes por medico que los atendio")
+        println("6- Registrar cita medica")
+        println("7- Salir del menu")
+        val opcion: Int = leerConsola.nextInt()
         when (opcion) {
             1 -> {
                 println("A continuacion registrara el empleado")
@@ -71,6 +74,9 @@ fun main() {
                 )
 
                 hospital.regitarEmpleado(empleado)
+
+                println("Empleado registrado ")
+                println("")
             }
 
             2 -> {
@@ -144,6 +150,9 @@ fun main() {
                 )
 
                 hospital.registrarMedicos(medico)
+                println("Medico resgistrado  $medico")
+                println("")
+
             }
 
             3 -> {
@@ -168,7 +177,14 @@ fun main() {
                 val ciudadProcedencia: String = leerConsola.next()
 
                 println("Ingrese el género (MASCULINO/FEMENINO): ")
-                val genero: Genero = Genero.valueOf(leerConsola.next().toUpperCase())
+                val generoInput = leerConsola.next().uppercase(Locale.ROOT)
+                var genero: Genero
+                try {
+                    genero = Genero.valueOf(generoInput)
+                } catch (e: IllegalArgumentException) {
+                    println("Género ingresado no es válido. Se utilizará MASCULINO por defecto.")
+                    genero = Genero.MASCULINO
+                }
 
                 println("Ingrese el grupo sanguíneo: ")
                 val grupoSanguineo: String = leerConsola.next()
@@ -189,10 +205,13 @@ fun main() {
                 )
 
                 hospital.registrarPaciente(paciente)
+                println("Paciente registrado")
+                println("")
             }
 
             4 -> {
                 println("Buscar un medico por especialidad")
+                leerConsola.nextLine()
                 val especialidad: String = leerConsola.nextLine()
                 println("El medico es ${hospital.listarMedicosPorEspecialidad(especialidad)}")
             }
@@ -201,7 +220,13 @@ fun main() {
                 println("Buscar pacientes por medico que los atencio")
                 println("Ingrese el DNO del medico para listar los pacientes ")
                 val dni = leerConsola.nextLong()
-                println("Los pacientes atendidos por el medico con dni $dni son ${hospital.listarPacientesPorMedico(dni)}")
+                println(
+                    "Los pacientes atendidos por el medico con dni $dni son ${
+                        hospital.listarPacientesPorMedico(
+                            dni
+                        )
+                    }"
+                )
             }
 
             6 -> {
@@ -221,8 +246,6 @@ fun main() {
                 println("Ingrese la fecha de la cita (YYYY-MM-DDTHH:MM): ")
                 val fecha: LocalDateTime = LocalDateTime.parse(leerConsola.next())
 
-                println("Ingrese la hora de la cita: ")
-                val hora: String = leerConsola.next()
                 if (paciente != null && medico != null) {
 
 
@@ -230,18 +253,22 @@ fun main() {
                         paciente = paciente,
                         medico = medico,
                         servicio = servicio,
-                        fecha = fecha,
-                        hora = hora
+                        fecha = fecha
                     )
-                    if (citaMedica != null) {
-                        hospital.registrarCitaMedica(citaMedica)
-                    }
-
+                    hospital.registrarCitaMedica(citaMedica)
+                    println("Cita registrada")
                 }
-
             }
 
-            7 -> break
+            7 -> {
+                println("Saliendo...")
+                break
+            }
+
+            else -> {
+                println("Opcion no valida ")
+            }
         }
     }
+
 }

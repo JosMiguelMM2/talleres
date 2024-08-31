@@ -16,6 +16,16 @@ class Paciente(
     cuidadProcedencia: String,
     val nHistoria: Genero,
     val grupoSanguin: String,
-    val medicamentosAlergicos:List<String>
-) : Persona(DNI, nombre, apellido, fechaNacimiento, direction, cuidadProcedencia) {
+    val medicamentosAlergicos: List<String>
+) : Persona(
+    DNI,
+    nombre,
+    apellido,
+    fechaNacimiento,
+    direction,
+    cuidadProcedencia
+) {
+    override fun toString(): String {
+        return "Paciente(nHistoria=$nHistoria, grupoSanguin='$grupoSanguin', medicamentosAlergicos=$medicamentosAlergicos)"
+    }
 }

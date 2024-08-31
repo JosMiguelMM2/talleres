@@ -17,4 +17,20 @@ open class EmpleadoPorPlanilla(
     cargo: String,
     val salarioMensual: Double,
     val porceAdicPorHoraExtra: Double
-) : Empleado(DNI, nombre, apellido, fechaNacimiento, direccion, ciudadProcedencia, codigoEmpleado, numeroHorasExtras, fechaIngreso, area, cargo)
+) : Empleado(
+    DNI,
+    nombre,
+    apellido,
+    fechaNacimiento,
+    direccion,
+    ciudadProcedencia,
+    codigoEmpleado,
+    numeroHorasExtras,
+    fechaIngreso,
+    area,
+    cargo
+) {
+    override fun toString(): String {
+        return "${super.toString()}, EmpleadoPorPlanilla(salarioMensual=$salarioMensual, porceAdicPorHoraExtra=$porceAdicPorHoraExtra)"
+    }
+}

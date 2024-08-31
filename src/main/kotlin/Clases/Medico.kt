@@ -36,6 +36,7 @@ class Medico(
     porcentajeAdicionalPorHoraExtra
 ){
     override fun toString(): String {
-        return "Medico(especialidad='$especialidad', servicio='$servicio', numeroConsultorio=$numeroConsultorio)"
+        return "${super.toString()}, Medico(especialidad='$especialidad', servicio='$servicio', " +
+                "numeroConsultorio=$numeroConsultorio)"
     }
 }

@@ -30,4 +30,9 @@ class EmpleadoEventual(
     fechaIngreso,
     area,
     cargo
-)
+){
+    override fun toString(): String {
+        return "${super.toString()}, EmpleadoEventual(honorariosPorHora=$honorariosPorHora, numeroHorasTotales=$numeroHorasTotales, " +
+                "fechaTerminoContrato=$fechaTerminoContrato)"
+    }
+}
