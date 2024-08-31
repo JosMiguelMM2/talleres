@@ -1,58 +1,54 @@
-# Sistema de Control de Gastos Telefónicos
+# Sistema de Gestión Hospitalaria
 
-## Descripción del Proyecto
+Este proyecto es un sistema de gestión para un hospital que permite registrar empleados, médicos, pacientes y citas médicas, así como listar médicos por especialidad y pacientes atendidos por un médico específico.
 
-Este proyecto busca desarrollar una aplicación para controlar los gastos telefónicos de una empresa. La aplicación permitirá registrar llamadas, mostrar información detallada de cada cabina telefónica y un consolidado total de la información de todas las cabinas.
+## Requisitos
+
+- **Kotlin**: Asegúrate de tener Kotlin instalado en tu entorno de desarrollo.
+- **Java**: El proyecto también requiere Java para ejecutar Kotlin.
 
 ## Funcionalidades
 
-* Registrar una llamada de acuerdo con la cabina telefónica
-* Mostrar información detallada de la cabina telefónica:
-    + Número de llamadas realizadas
-    + Duración total de las llamadas en minutos
-    + Costo total de las llamadas en pesos
-* Mostrar un consolidado total de la información de las cabinas:
-    + Costo total en pesos de la línea
-    + Número total de llamadas realizadas
-    + Duración total de llamadas en minutos
-    + Cálculo del costo promedio por minuto según el costo total y el total de minutos
-* Reiniciar el uso de la cabina telefónica, dejando todos sus valores en cero
+El sistema ofrece las siguientes funcionalidades:
 
-## Tarifas
+1. **Registrar Empleados**: Permite registrar empleados en el sistema ingresando su información personal, laboral, y otros datos relevantes.
+2. **Registrar Médicos**: Registra médicos con información adicional como especialidad, servicio, y consultorio.
+3. **Registrar Pacientes**: Permite registrar pacientes con sus datos personales y detalles médicos.
+4. **Listar Médicos por Especialidad**: Busca y lista médicos según su especialidad.
+5. **Listar Pacientes por Médico**: Lista los pacientes que han sido atendidos por un médico específico.
+6. **Registrar Cita Médica**: Registra citas médicas entre pacientes y médicos, especificando el servicio y la fecha.
+7. **Salir del Menú**: Cierra el programa.
 
-| Tipo de Llamada | Costo por Minuto |
-| --- | --- |
-| Local | $50 pesos |
-| Larga Distancia | $350 pesos |
-| Celular | $150 pesos |
+## Cómo ejecutar el programa
 
-## Instalación y Uso
+1. **Compilar y ejecutar**: Puedes compilar y ejecutar el programa en tu IDE de preferencia que soporte Kotlin (por ejemplo, IntelliJ IDEA) o utilizando la línea de comandos.
 
-Para ejecutar la aplicación, sigue estos pasos:
+2. **Interfaz de usuario**: El programa se ejecuta en la consola y guía al usuario a través de un menú interactivo.
 
-1. Asegúrate de tener instalado IntelliJ IDEA.
-2. Abre el proyecto en IntelliJ IDEA.
-3. Asegúrate de tener Gradle 8.10 configurado en tu proyecto.
-4. Ejecuta el proyecto IntelliJ IDEA.
-5. En caso de querer generar un archivo .jar debe configurar el archivo build.gradle.kts para indicar la función de ejecución. 
+### Ejemplo de Uso
 
-## Tecnologías Utilizadas
+Al iniciar el programa, se mostrará un menú con las opciones mencionadas anteriormente. A continuación se muestra un ejemplo de cómo se pueden utilizar algunas de estas opciones:
 
-* Kotlin 2.0 como lenguaje de programación.
-* Gradle 8.10 como sistema de construcción y gestión de dependencias.
-* IntelliJ IDEA como entorno de desarrollo integrado (IDE).
+- **Registrar un Empleado**:
+  - Se solicitará ingresar el DNI, nombre, apellido, fecha de nacimiento, dirección, ciudad de procedencia, código de empleado, número de horas extras, fecha de ingreso, área, y cargo del empleado.
+  - Tras ingresar todos los datos, el empleado será registrado en el sistema.
 
-## Contribuir
+- **Registrar un Paciente**:
+  - Se solicitará el DNI, nombre, apellido, fecha de nacimiento, dirección, ciudad de procedencia, género, grupo sanguíneo, y medicamentos a los que es alérgico.
+  - El paciente será registrado después de ingresar todos los datos.
 
-Si deseas contribuir al proyecto, sigue estos pasos:
+- **Registrar una Cita Médica**:
+  - Se pedirá el DNI del paciente, el DNI del médico, el servicio, y la fecha de la cita en formato `YYYY-MM-DDTHH:MM`.
+  - Una vez ingresada toda la información, la cita será registrada en el sistema.
 
-1. Clona el repositorio en tu máquina local.
-2. Crea una nueva rama para tus cambios.
-3. Realiza tus cambios y asegúrate de probarlos.
-4. Haz un push de tus cambios a la rama que creaste.
-5. Crea un pull request para que tus cambios sean revisados y mergeados al repositorio principal.
+## Manejo de Errores
 
+- El sistema maneja errores comunes como la entrada de datos incorrectos o incompletos. Por ejemplo, si se ingresa un género no válido, se asigna un valor por defecto.
 
-## Demostración de funcionamiento correcto
+## Contribuciones
 
-![img.png](images/img.png)
+Las contribuciones son bienvenidas. Si encuentras algún error o tienes sugerencias de mejoras, no dudes en crear un issue o un pull request.
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo `LICENSE`.
