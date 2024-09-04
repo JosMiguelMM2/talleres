@@ -1,28 +1,24 @@
-El departamento de Informática de un hospital está realizando un nuevo registro de datos de todas las personas que tienen relación con esa institución, que son: los empleados, los médicos y los pacientes,
+Quiz linea III
+Enunciado:
+Desarrolla un sistema para administrar una colección de libros electrónicos y audiolibros. La colección contiene diferentes tipos de
+ medios, como libros electrónicos y audiolibros. Cada medio tiene atributos comunes como título, autor y año de publicación, pero cada
+  uno también tiene características específicas.
 
-Los empleados son categorizados en función de si son contratados por Planilla o de forma Eventual y son los encargados de los procesos administrativos.
+Crea una clase base MedioDigital que incluya propiedades como titulo, autor, y añoPublicacion. Además, define un método
+ mostrarInformacion() que será implementado por las clases derivadas para mostrar la información del medio de manera específica.
 
-Los médicos (que podrían considerarse un tipo especial de empleados contratados por Planilla) se encargan de las atenciones de las consultas médicas.
+Implementa clases derivadas LibroElectronico y Audiolibro. La clase LibroElectronico debe incluir una propiedad adicional numeroPaginas,
+ y el método mostrarInformacion() debe mostrar un mensaje indicando el título, autor, año de publicación y el número de páginas. La clase
+  Audiolibro debe incluir una propiedad narrador, y el método mostrarInformacion() debe mostrar el título, autor, año de publicación y el
+   nombre del narrador.
 
-Para solicitar una cita, el paciente es atendido por un empleado. El paciente indica el servicio en el cual quiere pasar consulta y el empleado le indica el nombre del médico, la fecha y la hora de la cita.
+Desarrolla un menú interactivo en la consola que permita al usuario realizar las siguientes operaciones:
 
-Los atributos de cada uno de ellos se indican a continuación:
-
-Persona: número de DNI, nombre, apellido, fecha de nacimiento, dirección, ciudad de procedencia.
-
-Paciente: número de historia clínica, sexo, grupo sanguíneo, lista de medicamentos a los que esalérgico.
-
-Empleado: código de Empleado, número de horas extras, fecha de ingreso, área, cargo.
-
-Empleado por Planilla: salario mensual, porcentaje adicional por hora extra.
-
-Empleado Eventual: honorarios por hora, número de horas totales (normales + extras) trabajadas, fecha de término del contrato.
-
-Médico: especialidad (cirujano, oftalmólogo, etc.), servicio (cirugía, oftalmología, etc.), número de consultorio.
-
-La aplicación a desarrollar debe permitir:
-
-Registrar los datos de los empleados, los pacientes y los médicos.
-Registrar los datos de una cita médica.
-Listar los datos de los médicos por la especialidad.
-Listar los datos (nombres y apellidos) de los pacientes atendidos por un médico determinado (ingresando su código).
+Agregar Medio: El usuario puede elegir entre agregar un libro electrónico o un audiolibro. Luego, se le pedirá ingresar los datos
+correspondientes para cada tipo de medio, y se añadirá a una lista en la colección.
+Mostrar Colección: Muestra todos los medios en la colección, organizados por tipo (libros electrónicos primero, luego audiolibros).
+Mostrar Información del Medio: Permite al usuario seleccionar un medio de la lista por su posición e invoca el método mostrarInformacion
+() correspondiente para mostrar los detalles del medio seleccionado.
+Eliminar Medio: Permite al usuario seleccionar un medio para eliminarlo de la lista.
+Salir: Finaliza la ejecución del programa.
+El menú debe ser cíclico, permitiendo al usuario realizar varias acciones hasta que decida salir.

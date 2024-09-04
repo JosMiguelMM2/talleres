@@ -1,274 +1,109 @@
 package org.example
 
-import org.example.Clases.*
-import java.lang.Error
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.util.Locale
+import org.example.Clases.Audiolibro
+import org.example.Clases.LibroElectronico
+import org.example.Clases.MedioDigital
 import java.util.Scanner
+
 
 fun main() {
     val leerConsola = Scanner(System.`in`)
-    val hospital = Hospital()
-
+    val coleccion = mutableListOf<MedioDigital>()
 
     while (true) {
-
-        println("Bienvenido al Hospital")
-        println("1- Registrar Empleados")
-        println("2- Registrar Medicos")
-        println("3- Registrar nuevos pacientes")
-        println("4- Listar medico por especialidad")
-        println("5- Listar pacientes por medico que los atendio")
-        println("6- Registrar cita medica")
-        println("7- Salir del menu")
-        val opcion: Int = leerConsola.nextInt()
+        println("Menú:")
+        println("1. Agregar Medio")
+        println("2. Mostrar Colección")
+        println("3. Mostrar Información del Medio")
+        println("4. Eliminar Medio")
+        println("5. Salir")
+        print("Elige una opción: ")
+        val opcion = leerConsola.nextInt()
         when (opcion) {
             1 -> {
-                println("A continuacion registrara el empleado")
-                println("Ingrese el DNI: ")
-                val dni: Long = leerConsola.nextLong()
+                println("Elige el tipo de medio a agregar:")
+                println("1. Libro Electrónico")
+                println("2. Audiolibro")
+                print("Elige una opción: ")
+                when (readLine()?.toIntOrNull()) {
+                    1 -> {
+                        print("Título: ")
+                        val titulo = readLine() ?: ""
+                        print("Autor: ")
+                        val autor = readLine() ?: ""
+                        print("Año de Publicación: ")
+                        val añoPublicacion = leerConsola.nextLong()
+                        print("Número de Páginas: ")
+                        val numeroPaginas = readLine()?.toIntOrNull() ?: 0
+                        val libro = LibroElectronico(titulo, autor, añoPublicacion, numeroPaginas)
+                        coleccion.add(libro)
+                    }
 
-                println("Ingrese el nombre: ")
-                val nombre: String = leerConsola.next()
+                    2 -> {
+                        print("Título: ")
+                        val titulo = readLine() ?: ""
+                        print("Autor: ")
+                        val autor = readLine() ?: ""
+                        print("Año de Publicación: ")
+                        val añoPublicacion = leerConsola.nextLong()
+                        print("Narrador: ")
+                        val narrador = readLine() ?: ""
 
-                println("Ingrese el apellido: ")
-                val apellido: String = leerConsola.next()
+                        val audiolibro = Audiolibro(titulo, autor, añoPublicacion, narrador)
+                        coleccion.add(audiolibro)
+                    }
 
-                println("Ingrese la fecha de nacimiento (YYYY-MM-DD): ")
-                val fechaNacimiento: LocalDate = LocalDate.parse(leerConsola.next())
-
-                println("Ingrese la dirección: ")
-                val direccion: String = leerConsola.next()
-
-                println("Ingrese la ciudad de procedencia: ")
-                val ciudadProcedencia: String = leerConsola.next()
-
-                println("Ingrese el código de empleado: ")
-                val codigoEmpleado: Long = leerConsola.nextLong()
-
-                println("Ingrese el número de horas extras: ")
-                val numeroHorasExtras: Int = leerConsola.nextInt()
-
-                println("Ingrese la fecha de ingreso (YYYY-MM-DD): ")
-                val fechaIngreso: LocalDate = LocalDate.parse(leerConsola.next())
-
-                println("Ingrese el área: ")
-                val area: String = leerConsola.next()
-
-                println("Ingrese el cargo: ")
-                val cargo: String = leerConsola.next()
-
-                val empleado = Empleado(
-                    DNI = dni,
-                    nombre = nombre,
-                    apellido = apellido,
-                    fechaNacimiento = fechaNacimiento,
-                    direccion = direccion,
-                    ciudadProcedencia = ciudadProcedencia,
-                    codigoEmpleado = codigoEmpleado,
-                    numeroHorasExtras = numeroHorasExtras,
-                    fechaIngreso = fechaIngreso,
-                    area = area,
-                    cargo = cargo
-                )
-
-                hospital.regitarEmpleado(empleado)
-
-                println("Empleado registrado ")
-                println("")
+                    else -> println("Opción no válida")
+                }
             }
 
             2 -> {
-                println("A continuación registrará al médico")
-
-                println("Ingrese el DNI: ")
-                val dni: Long = leerConsola.nextLong()
-
-                println("Ingrese el nombre: ")
-                val nombre: String = leerConsola.next()
-
-                println("Ingrese el apellido: ")
-                val apellido: String = leerConsola.next()
-
-                println("Ingrese la fecha de nacimiento (YYYY-MM-DD): ")
-                val fechaNacimiento: LocalDate = LocalDate.parse(leerConsola.next())
-
-                println("Ingrese la dirección: ")
-                val direccion: String = leerConsola.next()
-
-                println("Ingrese la ciudad de procedencia: ")
-                val ciudadProcedencia: String = leerConsola.next()
-
-                println("Ingrese el código de empleado: ")
-                val codigoEmpleado: Long = leerConsola.nextLong()
-
-                println("Ingrese el número de horas extras: ")
-                val numeroHorasExtras: Int = leerConsola.nextInt()
-
-                println("Ingrese la fecha de ingreso (YYYY-MM-DD): ")
-                val fechaIngreso: LocalDate = LocalDate.parse(leerConsola.next())
-
-                println("Ingrese el área: ")
-                val area: String = leerConsola.next()
-
-                println("Ingrese el cargo: ")
-                val cargo: String = leerConsola.next()
-
-                println("Ingrese el salario mensual: ")
-                val salarioMensual: Double = leerConsola.nextDouble()
-
-                println("Ingrese el porcentaje adicional por hora extra: ")
-                val porcentajeAdicionalPorHoraExtra: Double = leerConsola.nextDouble()
-
-                println("Ingrese la especialidad: ")
-                val especialidad: String = leerConsola.next()
-
-                println("Ingrese el servicio: ")
-                val servicio: String = leerConsola.next()
-
-                println("Ingrese el número de consultorio: ")
-                val numeroConsultorio: Int = leerConsola.nextInt()
-
-                val medico = Medico(
-                    DNI = dni,
-                    nombre = nombre,
-                    apellido = apellido,
-                    fechaNacimiento = fechaNacimiento,
-                    direccion = direccion,
-                    ciudadProcedencia = ciudadProcedencia,
-                    codigoEmpleado = codigoEmpleado,
-                    numeroHorasExtras = numeroHorasExtras,
-                    fechaIngreso = fechaIngreso,
-                    area = area,
-                    cargo = cargo,
-                    salarioMensual = salarioMensual,
-                    porcentajeAdicionalPorHoraExtra = porcentajeAdicionalPorHoraExtra,
-                    especialidad = especialidad,
-                    servicio = servicio,
-                    numeroConsultorio = numeroConsultorio
-                )
-
-                hospital.registrarMedicos(medico)
-                println("Medico resgistrado  $medico")
-                println("")
-
+                println("Colección:")
+                println("Libros Electrónicos:")
+                coleccion.filterIsInstance<LibroElectronico>().forEachIndexed { index, medio ->
+                    println("${index + 1}. ${medio.titulo} - ${medio.autor}")
+                }
+                println("Audiolibros:")
+                val offset = coleccion.filterIsInstance<LibroElectronico>().size
+                coleccion.filterIsInstance<Audiolibro>().forEachIndexed { index, medio ->
+                    println("${index + 1 + offset}. ${medio.titulo} - ${medio.autor}")
+                }
             }
 
             3 -> {
-                println("A continuación registrará al paciente")
-
-                println("Ingrese el DNI: ")
-                val dni: Long = leerConsola.nextLong()
-
-                println("Ingrese el nombre: ")
-                val nombre: String = leerConsola.next()
-
-                println("Ingrese el apellido: ")
-                val apellido: String = leerConsola.next()
-
-                println("Ingrese la fecha de nacimiento (YYYY-MM-DD): ")
-                val fechaNacimiento: LocalDate = LocalDate.parse(leerConsola.next())
-
-                println("Ingrese la dirección: ")
-                val direccion: String = leerConsola.next()
-
-                println("Ingrese la ciudad de procedencia: ")
-                val ciudadProcedencia: String = leerConsola.next()
-
-                println("Ingrese el género (MASCULINO/FEMENINO): ")
-                val generoInput = leerConsola.next().uppercase(Locale.ROOT)
-                var genero: Genero
-                try {
-                    genero = Genero.valueOf(generoInput)
-                } catch (e: IllegalArgumentException) {
-                    println("Género ingresado no es válido. Se utilizará MASCULINO por defecto.")
-                    genero = Genero.MASCULINO
+                println("Selecciona el número del medio para ver detalles:")
+                coleccion.forEachIndexed { index, medio ->
+                    println("${index + 1}. ${medio.titulo} - ${medio.autor}")
                 }
-
-                println("Ingrese el grupo sanguíneo: ")
-                val grupoSanguineo: String = leerConsola.next()
-
-                println("Ingrese los medicamentos alérgicos (separados por comas): ")
-                val medicamentosAlergicos: List<String> = leerConsola.next().split(",")
-
-                val paciente = Paciente(
-                    DNI = dni,
-                    nombre = nombre,
-                    apellido = apellido,
-                    fechaNacimiento = fechaNacimiento,
-                    direction = direccion,
-                    cuidadProcedencia = ciudadProcedencia,
-                    nHistoria = genero,
-                    grupoSanguin = grupoSanguineo,
-                    medicamentosAlergicos = medicamentosAlergicos
-                )
-
-                hospital.registrarPaciente(paciente)
-                println("Paciente registrado")
-                println("")
+                val posicion = readLine()?.toIntOrNull()
+                if (posicion != null && posicion in 1..coleccion.size) {
+                    coleccion[posicion - 1].mostrarInformacion()
+                } else {
+                    println("Posición no válida")
+                }
             }
 
             4 -> {
-                println("Buscar un medico por especialidad")
-                leerConsola.nextLine()
-                val especialidad: String = leerConsola.nextLine()
-                println("El medico es ${hospital.listarMedicosPorEspecialidad(especialidad)}")
-            }
-
-            5 -> {
-                println("Buscar pacientes por medico que los atencio")
-                println("Ingrese el DNO del medico para listar los pacientes ")
-                val dni = leerConsola.nextLong()
-                println(
-                    "Los pacientes atendidos por el medico con dni $dni son ${
-                        hospital.listarPacientesPorMedico(
-                            dni
-                        )
-                    }"
-                )
-            }
-
-            6 -> {
-                println("A continuación registrará la cita médica")
-
-                println("Ingrese el DNI del paciente: ")
-                val dniPaciente: Long = leerConsola.nextLong()
-                val paciente: Paciente? = hospital.buscarPacientePorDNI(dniPaciente)
-
-                println("Ingrese el DNI del médico: ")
-                val dniMedico: Long = leerConsola.nextLong()
-                val medico: Medico? = hospital.listarMedicosPorDNI(dniMedico)
-
-                println("Ingrese el servicio: ")
-                val servicio: String = leerConsola.next()
-
-                println("Ingrese la fecha de la cita (YYYY-MM-DDTHH:MM): ")
-                val fecha: LocalDateTime = LocalDateTime.parse(leerConsola.next())
-
-                if (paciente != null && medico != null) {
-
-
-                    val citaMedica = CitaMedica(
-                        paciente = paciente,
-                        medico = medico,
-                        servicio = servicio,
-                        fecha = fecha
-                    )
-                    hospital.registrarCitaMedica(citaMedica)
-                    println("Cita registrada")
+                println("Selecciona el número del medio para eliminar:")
+                coleccion.forEachIndexed { index, medio ->
+                    println("${index + 1}. ${medio.titulo} - ${medio.autor}")
+                }
+                val posicion = readLine()?.toIntOrNull()
+                if (posicion != null && posicion in 1..coleccion.size) {
+                    coleccion.removeAt(posicion - 1)
+                    println("Medio eliminado")
+                } else {
+                    println("Posición no válida")
                 }
             }
 
-            7 -> {
+            5 -> {
                 println("Saliendo...")
                 break
             }
 
-            else -> {
-                println("Opcion no valida ")
-            }
+            else -> println("Opción no válida")
         }
+        println()
     }
-
 }
