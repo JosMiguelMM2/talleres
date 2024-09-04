@@ -1,54 +1,75 @@
-# Sistema de Gestión Hospitalaria
+# Sistema de Gestión de Medios Digitales
 
-Este proyecto es un sistema de gestión para un hospital que permite registrar empleados, médicos, pacientes y citas médicas, así como listar médicos por especialidad y pacientes atendidos por un médico específico.
+## Problema 
+Quiz linea III
+Enunciado:
+Desarrolla un sistema para administrar una colección de libros electrónicos y audiolibros. La colección contiene diferentes tipos de
+medios, como libros electrónicos y audiolibros. Cada medio tiene atributos comunes como título, autor y año de publicación, pero cada
+uno también tiene características específicas.
 
-## Requisitos
+Crea una clase base MedioDigital que incluya propiedades como titulo, autor, y añoPublicacion. Además, define un método
+mostrarInformacion() que será implementado por las clases derivadas para mostrar la información del medio de manera específica.
 
-- **Kotlin**: Asegúrate de tener Kotlin instalado en tu entorno de desarrollo.
-- **Java**: El proyecto también requiere Java para ejecutar Kotlin.
+Implementa clases derivadas LibroElectronico y Audiolibro. La clase LibroElectronico debe incluir una propiedad adicional numeroPaginas,
+y el método mostrarInformacion() debe mostrar un mensaje indicando el título, autor, año de publicación y el número de páginas. La clase
+Audiolibro debe incluir una propiedad narrador, y el método mostrarInformacion() debe mostrar el título, autor, año de publicación y el
+nombre del narrador.
 
-## Funcionalidades
+Desarrolla un menú interactivo en la consola que permita al usuario realizar las siguientes operaciones:
 
-El sistema ofrece las siguientes funcionalidades:
+Agregar Medio: El usuario puede elegir entre agregar un libro electrónico o un audiolibro. Luego, se le pedirá ingresar los datos
+correspondientes para cada tipo de medio, y se añadirá a una lista en la colección.
+Mostrar Colección: Muestra todos los medios en la colección, organizados por tipo (libros electrónicos primero, luego audiolibros).
+Mostrar Información del Medio: Permite al usuario seleccionar un medio de la lista por su posición e invoca el método mostrarInformacion
+() correspondiente para mostrar los detalles del medio seleccionado.
+Eliminar Medio: Permite al usuario seleccionar un medio para eliminarlo de la lista.
+Salir: Finaliza la ejecución del programa.
+El menú debe ser cíclico, permitiendo al usuario realizar varias acciones hasta que decida salir.
 
-1. **Registrar Empleados**: Permite registrar empleados en el sistema ingresando su información personal, laboral, y otros datos relevantes.
-2. **Registrar Médicos**: Registra médicos con información adicional como especialidad, servicio, y consultorio.
-3. **Registrar Pacientes**: Permite registrar pacientes con sus datos personales y detalles médicos.
-4. **Listar Médicos por Especialidad**: Busca y lista médicos según su especialidad.
-5. **Listar Pacientes por Médico**: Lista los pacientes que han sido atendidos por un médico específico.
-6. **Registrar Cita Médica**: Registra citas médicas entre pacientes y médicos, especificando el servicio y la fecha.
-7. **Salir del Menú**: Cierra el programa.
+Este proyecto en Kotlin implementa un sistema para administrar una colección de libros electrónicos y audiolibros. La colección permite agregar, mostrar, mostrar información detallada y eliminar medios digitales. Utiliza principios de programación orientada a objetos como herencia y polimorfismo.
 
-## Cómo ejecutar el programa
+## Estructura del Código
 
-1. **Compilar y ejecutar**: Puedes compilar y ejecutar el programa en tu IDE de preferencia que soporte Kotlin (por ejemplo, IntelliJ IDEA) o utilizando la línea de comandos.
+El código está compuesto por las siguientes clases y funciones:
 
-2. **Interfaz de usuario**: El programa se ejecuta en la consola y guía al usuario a través de un menú interactivo.
+### Clases
 
-### Ejemplo de Uso
+- **MedioDigital**: Clase base que representa un medio digital genérico.
+  - **Propiedades**:
+    - `titulo`: Título del medio.
+    - `autor`: Autor del medio.
+    - `añoPublicacion`: Año de publicación del medio.
+  - **Método**:
+    - `mostrarInformacion()`: Método abstracto que será implementado por las clases derivadas.
 
-Al iniciar el programa, se mostrará un menú con las opciones mencionadas anteriormente. A continuación se muestra un ejemplo de cómo se pueden utilizar algunas de estas opciones:
+- **LibroElectronico**: Clase derivada de `MedioDigital` que representa un libro electrónico.
+  - **Propiedades**:
+    - `numeroPaginas`: Número de páginas del libro electrónico.
+  - **Método**:
+    - `mostrarInformacion()`: Implementa la visualización específica para libros electrónicos.
 
-- **Registrar un Empleado**:
-  - Se solicitará ingresar el DNI, nombre, apellido, fecha de nacimiento, dirección, ciudad de procedencia, código de empleado, número de horas extras, fecha de ingreso, área, y cargo del empleado.
-  - Tras ingresar todos los datos, el empleado será registrado en el sistema.
+- **Audiolibro**: Clase derivada de `MedioDigital` que representa un audiolibro.
+  - **Propiedades**:
+    - `narrador`: Nombre del narrador del audiolibro.
+  - **Método**:
+    - `mostrarInformacion()`: Implementa la visualización específica para audiolibros.
 
-- **Registrar un Paciente**:
-  - Se solicitará el DNI, nombre, apellido, fecha de nacimiento, dirección, ciudad de procedencia, género, grupo sanguíneo, y medicamentos a los que es alérgico.
-  - El paciente será registrado después de ingresar todos los datos.
+### Función Principal
 
-- **Registrar una Cita Médica**:
-  - Se pedirá el DNI del paciente, el DNI del médico, el servicio, y la fecha de la cita en formato `YYYY-MM-DDTHH:MM`.
-  - Una vez ingresada toda la información, la cita será registrada en el sistema.
+La función `main()` contiene un menú interactivo que permite al usuario realizar varias operaciones con la colección de medios digitales:
 
-## Manejo de Errores
+1. **Agregar Medio**: Permite al usuario agregar un libro electrónico o un audiolibro a la colección.
+  - **Datos requeridos**:
+    - Para un libro electrónico: título, autor, año de publicación y número de páginas.
+    - Para un audiolibro: título, autor, año de publicación y narrador.
 
-- El sistema maneja errores comunes como la entrada de datos incorrectos o incompletos. Por ejemplo, si se ingresa un género no válido, se asigna un valor por defecto.
+2. **Mostrar Colección**: Muestra todos los medios en la colección, organizados por tipo.
+  - **Orden**:
+    - Libros electrónicos primero.
+    - Audiolibros después.
 
-## Contribuciones
+3. **Mostrar Información del Medio**: Permite al usuario seleccionar un medio por su número y muestra su información detallada utilizando el método `mostrarInformacion()`.
 
-Las contribuciones son bienvenidas. Si encuentras algún error o tienes sugerencias de mejoras, no dudes en crear un issue o un pull request.
+4. **Eliminar Medio**: Permite al usuario seleccionar un medio por su número y eliminarlo de la colección.
 
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo `LICENSE`.
+5. **Salir**: Finaliza la ejecución del programa.

@@ -8,6 +8,13 @@ import java.util.Scanner
 
 fun main() {
     val leerConsola = Scanner(System.`in`)
+
+    /**
+     * Se crea una lista mutable para almacenas la coleccion
+     * aprovechando la herencia y con ello el polimorfismo
+     * se puede agregar cualquier medio digital a la coleccion
+     * sea libro electronico o audiolibro
+     */
     val coleccion = mutableListOf<MedioDigital>()
 
     while (true) {
@@ -21,6 +28,10 @@ fun main() {
         val opcion = leerConsola.nextInt()
         when (opcion) {
             1 -> {
+                /**
+                 * Se piden los datos del medio digital a agregar
+                 * y se agrega a travez de su respectiva clase
+                 */
                 println("Elige el tipo de medio a agregar:")
                 println("1. Libro Electrónico")
                 println("2. Audiolibro")
@@ -32,10 +43,10 @@ fun main() {
                         print("Autor: ")
                         val autor = readLine() ?: ""
                         print("Año de Publicación: ")
-                        val añoPublicacion = leerConsola.nextLong()
+                        val yearPublicacion = leerConsola.nextLong()
                         print("Número de Páginas: ")
                         val numeroPaginas = readLine()?.toIntOrNull() ?: 0
-                        val libro = LibroElectronico(titulo, autor, añoPublicacion, numeroPaginas)
+                        val libro = LibroElectronico(titulo, autor, yearPublicacion, numeroPaginas)
                         coleccion.add(libro)
                     }
 
@@ -58,11 +69,28 @@ fun main() {
             }
 
             2 -> {
+                /**
+                 * Se muestra la coleccion de medios digitales
+                 * clasificados por el tipo de medio
+                 */
+                println(" ")
+                println(" ")
                 println("Colección:")
                 println("Libros Electrónicos:")
+
+                /**
+                 * filterIsInstance
+                 * devuelve una lista de datos de a coleccion
+                 * que sean del tipo de dato especificado que se le pasa
+                 *
+                 * Se lleva el conteo del elemento de la coleccion
+                 *
+                 * y se muestran algunos datos de los medios digitales
+                 */
                 coleccion.filterIsInstance<LibroElectronico>().forEachIndexed { index, medio ->
                     println("${index + 1}. ${medio.titulo} - ${medio.autor}")
                 }
+                println(" ")
                 println("Audiolibros:")
                 val offset = coleccion.filterIsInstance<LibroElectronico>().size
                 coleccion.filterIsInstance<Audiolibro>().forEachIndexed { index, medio ->
@@ -71,7 +99,20 @@ fun main() {
             }
 
             3 -> {
+                /**
+                 * Se muestra la coleccion de medios digitales
+                 * de manera detallada, se llama el metodo mostrarInformacion
+                 * el cual se encuentra en la clase padre MedioDigital
+                 * pero se sobre escribe en las clases hijas LibroElectronico y Audiol
+                 * esto es posible con polomorfismo
+                 */
                 println("Selecciona el número del medio para ver detalles:")
+
+                /**
+                 * forEachIndexed
+                 * metodo permite recorrer una coleccion de datos
+                 * y da el numero del indece de cada elemento de la coleccion
+                 */
                 coleccion.forEachIndexed { index, medio ->
                     println("${index + 1}. ${medio.titulo} - ${medio.autor}")
                 }
@@ -84,6 +125,12 @@ fun main() {
             }
 
             4 -> {
+
+                /**
+                 * Al igual que el metodo anterior se busca el medio digital
+                 * y se remueve de la coleccion
+                 */
+
                 println("Selecciona el número del medio para eliminar:")
                 coleccion.forEachIndexed { index, medio ->
                     println("${index + 1}. ${medio.titulo} - ${medio.autor}")

@@ -7,6 +7,7 @@ class LibroElectronico(
     val numeroPaginas: Int
 ) : MedioDigital(titulo, autor, yearPublicacion) {
     override fun mostrarInformacion() {
-        println("Libro Electrónico -> Título: $titulo, Autor: $autor, Año de publicación: $yearPublicacion, Número de páginas: $numeroPaginas")
+        println("Libro Electrónico -> Título: $titulo, Autor: $autor, Año de publicación: $yearPublicacion, " +
+                "Número de páginas: $numeroPaginas")
     }
 }
