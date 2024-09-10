@@ -1,156 +1,81 @@
 package org.example
 
-import org.example.Clases.Audiolibro
-import org.example.Clases.LibroElectronico
-import org.example.Clases.MedioDigital
-import java.util.Scanner
+import org.example.Clases.Elecciones
 
 
 fun main() {
-    val leerConsola = Scanner(System.`in`)
-
-    /**
-     * Se crea una lista mutable para almacenas la coleccion
-     * aprovechando la herencia y con ello el polimorfismo
-     * se puede agregar cualquier medio digital a la coleccion
-     * sea libro electronico o audiolibro
-     */
-    val coleccion = mutableListOf<MedioDigital>()
-
+    // Se predefinen los candidados debido a que el programa no requiere ponerlos desde la consola
+    val eleccion = Elecciones()
+    eleccion.agregarCandidato("Candidato 1")
+    eleccion.agregarCandidato("Candidato 2")
+    eleccion.agregarCandidato("Candidato 3")
     while (true) {
-        println("Menú:")
-        println("1. Agregar Medio")
-        println("2. Mostrar Colección")
-        println("3. Mostrar Información del Medio")
-        println("4. Eliminar Medio")
-        println("5. Salir")
-        print("Elige una opción: ")
-        val opcion = leerConsola.nextInt()
-        when (opcion) {
+        println("\n--- Elecciones Municipio Premier ---")
+        println("1. Votar por un candidato")
+        println("2. Calcular el costo de campaña de un candidato")
+        println("3. Vaciar urnas")
+        println("4. Ver número total de votos")
+        println("5. Ver porcentaje de votos por candidato")
+        println("6. Ver costo promedio de campaña")
+        println("7. Ver candidato ganador")
+        println("8. Salir")
+        print("Selecciona una opción: ")
+
+        when (readln()?.toInt()) {
             1 -> {
-                /**
-                 * Se piden los datos del medio digital a agregar
-                 * y se agrega a travez de su respectiva clase
-                 */
-                println("Elige el tipo de medio a agregar:")
-                println("1. Libro Electrónico")
-                println("2. Audiolibro")
-                print("Elige una opción: ")
-                when (readLine()?.toIntOrNull()) {
-                    1 -> {
-                        print("Título: ")
-                        val titulo = readLine() ?: ""
-                        print("Autor: ")
-                        val autor = readLine() ?: ""
-                        print("Año de Publicación: ")
-                        val yearPublicacion = leerConsola.nextLong()
-                        print("Número de Páginas: ")
-                        val numeroPaginas = readLine()?.toIntOrNull() ?: 0
-                        val libro = LibroElectronico(titulo, autor, yearPublicacion, numeroPaginas)
-                        coleccion.add(libro)
-                    }
-
-                    2 -> {
-                        print("Título: ")
-                        val titulo = readLine() ?: ""
-                        print("Autor: ")
-                        val autor = readLine() ?: ""
-                        print("Año de Publicación: ")
-                        val añoPublicacion = leerConsola.nextLong()
-                        print("Narrador: ")
-                        val narrador = readLine() ?: ""
-
-                        val audiolibro = Audiolibro(titulo, autor, añoPublicacion, narrador)
-                        coleccion.add(audiolibro)
-                    }
-
-                    else -> println("Opción no válida")
+                println("Selecciona un candidato (1, 2, 3): ")
+                val candidatoIndex = readLine()?.toInt()?.minus(1) ?: -1
+                val candidatos = eleccion.getCandidatos()
+                if (candidatoIndex in candidatos.indices) {
+                    println("Medio que influyó (internet, radio, tv): ")
+                    val medio = readLine() ?: ""
+                    eleccion.votar(candidatos[candidatoIndex], medio)
+                } else {
+                    println("Candidato inválido")
                 }
             }
 
             2 -> {
-                /**
-                 * Se muestra la coleccion de medios digitales
-                 * clasificados por el tipo de medio
-                 */
-                println(" ")
-                println(" ")
-                println("Colección:")
-                println("Libros Electrónicos:")
-
-                /**
-                 * filterIsInstance
-                 * devuelve una lista de datos de a coleccion
-                 * que sean del tipo de dato especificado que se le pasa
-                 *
-                 * Se lleva el conteo del elemento de la coleccion
-                 *
-                 * y se muestran algunos datos de los medios digitales
-                 */
-                coleccion.filterIsInstance<LibroElectronico>().forEachIndexed { index, medio ->
-                    println("${index + 1}. ${medio.titulo} - ${medio.autor}")
-                }
-                println(" ")
-                println("Audiolibros:")
-                val offset = coleccion.filterIsInstance<LibroElectronico>().size
-                coleccion.filterIsInstance<Audiolibro>().forEachIndexed { index, medio ->
-                    println("${index + 1 + offset}. ${medio.titulo} - ${medio.autor}")
+                println("Selecciona un candidato (1, 2, 3): ")
+                val candidatoIndex = readLine()?.toInt()?.minus(1) ?: -1
+                val candidatos = eleccion.getCandidatos()
+                if (candidatoIndex in candidatos.indices) {
+                    println("El costo de campaña de ${candidatos[candidatoIndex].nombre} es: ${candidatos[candidatoIndex].costoCampania()}")
+                } else {
+                    println("Candidato inválido")
                 }
             }
 
             3 -> {
-                /**
-                 * Se muestra la coleccion de medios digitales
-                 * de manera detallada, se llama el metodo mostrarInformacion
-                 * el cual se encuentra en la clase padre MedioDigital
-                 * pero se sobre escribe en las clases hijas LibroElectronico y Audiol
-                 * esto es posible con polomorfismo
-                 */
-                println("Selecciona el número del medio para ver detalles:")
-
-                /**
-                 * forEachIndexed
-                 * metodo permite recorrer una coleccion de datos
-                 * y da el numero del indece de cada elemento de la coleccion
-                 */
-                coleccion.forEachIndexed { index, medio ->
-                    println("${index + 1}. ${medio.titulo} - ${medio.autor}")
-                }
-                val posicion = readLine()?.toIntOrNull()
-                if (posicion != null && posicion in 1..coleccion.size) {
-                    coleccion[posicion - 1].mostrarInformacion()
-                } else {
-                    println("Posición no válida")
-                }
+                eleccion.vaciarUrnas()
+                println("Urnas vaciadas")
             }
 
             4 -> {
-
-                /**
-                 * Al igual que el metodo anterior se busca el medio digital
-                 * y se remueve de la coleccion
-                 */
-
-                println("Selecciona el número del medio para eliminar:")
-                coleccion.forEachIndexed { index, medio ->
-                    println("${index + 1}. ${medio.titulo} - ${medio.autor}")
-                }
-                val posicion = readLine()?.toIntOrNull()
-                if (posicion != null && posicion in 1..coleccion.size) {
-                    coleccion.removeAt(posicion - 1)
-                    println("Medio eliminado")
-                } else {
-                    println("Posición no válida")
-                }
+                println("El número total de votos es: ${eleccion.totalVotos()}")
             }
 
             5 -> {
-                println("Saliendo...")
-                break
+                val candidatos = eleccion.getCandidatos()
+                candidatos.forEachIndexed { index, candidato ->
+                    println("Porcentaje de votos de ${candidato.nombre}: ${eleccion.porcentajeVotos(candidato)}%")
+                }
             }
+            6 -> {
+                println("El costo promedio de campaña es: ${eleccion.costoPromedioCampania()}")
+            }
+            7 -> {
+                val ganador = eleccion.ganador()
+                if (ganador != null) {
+                    println("El candidato ganador es: ${ganador.nombre} con ${ganador.totalVotos()} votos")
+                } else {
+                    println("No hay votos registrados")
+                }
+            }
+            8 -> return
 
-            else -> println("Opción no válida")
+            else -> println("Opcion no valida")
         }
-        println()
     }
+
 }

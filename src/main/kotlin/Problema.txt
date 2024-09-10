@@ -1,24 +1,19 @@
-Quiz linea III
-Enunciado:
-Desarrolla un sistema para administrar una colección de libros electrónicos y audiolibros. La colección contiene diferentes tipos de
- medios, como libros electrónicos y audiolibros. Cada medio tiene atributos comunes como título, autor y año de publicación, pero cada
-  uno también tiene características específicas.
+Desarrollar un software que permita escoger el representante del municipio “Premier”. Para tal cargo se han postulado tres candidatos, los cuales han realizado una intensa campaña publicitaria utilizando los principales medios de comunicación (Internet, radio, y televisión). Se desea conocer el costo de la campaña calculando el retorno de la inversión realizada en publicidad. Para esto, se determinaron los siguientes valores dependiendo del medio que influenció al votante:
 
-Crea una clase base MedioDigital que incluya propiedades como titulo, autor, y añoPublicacion. Además, define un método
- mostrarInformacion() que será implementado por las clases derivadas para mostrar la información del medio de manera específica.
 
-Implementa clases derivadas LibroElectronico y Audiolibro. La clase LibroElectronico debe incluir una propiedad adicional numeroPaginas,
- y el método mostrarInformacion() debe mostrar un mensaje indicando el título, autor, año de publicación y el número de páginas. La clase
-  Audiolibro debe incluir una propiedad narrador, y el método mostrarInformacion() debe mostrar el título, autor, año de publicación y el
-   nombre del narrador.
+•	Voto influenciado por publicidad en Internet: $700000
+•	Voto influenciado por publicidad en radio: $200000
+•	Voto influenciado por publicidad en televisión: $600000
 
-Desarrolla un menú interactivo en la consola que permita al usuario realizar las siguientes operaciones:
+Lo anterior quiere decir que, por cada voto que reciba un candidato influenciado por publicidad en Internet,
+su costo de campaña se incrementara en $700000, del mismo modo por cada voto influenciado por publicidad en radio, su costo de campaña se incrementara en $200000,
+y finalmente, por cada voto influenciado por publicidad en televisión, su costo de campaña se incrementar en $600000.
 
-Agregar Medio: El usuario puede elegir entre agregar un libro electrónico o un audiolibro. Luego, se le pedirá ingresar los datos
-correspondientes para cada tipo de medio, y se añadirá a una lista en la colección.
-Mostrar Colección: Muestra todos los medios en la colección, organizados por tipo (libros electrónicos primero, luego audiolibros).
-Mostrar Información del Medio: Permite al usuario seleccionar un medio de la lista por su posición e invoca el método mostrarInformacion
-() correspondiente para mostrar los detalles del medio seleccionado.
-Eliminar Medio: Permite al usuario seleccionar un medio para eliminarlo de la lista.
-Salir: Finaliza la ejecución del programa.
-El menú debe ser cíclico, permitiendo al usuario realizar varias acciones hasta que decida salir.
+Las elecciones para representante del municipio “Premier” requieren una aplicación que les permita:
+1.	Votar por el candidato de su elección.
+2.	Calcular el costo de campaña de un candidato dependiendo de la influencia publicitaria de cada voto.
+3.	Vaciar todas las urnas de la votación.
+4.	Conocer el número total de votos.
+5.	Porcentaje de votos obtenidos por cada candidato.
+6.	Costo promedio de campaña en las elecciones.
+7. conocer el candidato ganador
